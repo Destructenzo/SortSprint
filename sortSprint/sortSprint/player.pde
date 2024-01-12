@@ -67,7 +67,7 @@ class player {
         y += grav;
       }
     }
-    if (x+25 >= tower.x && y+25 > tower.y) { // tower side
+    if (x+25 >= tower.x && y+25 > tower.y && x < tower.x) { // tower side
         x -= VX;
     }
     if (x >= tower.x && y-25 <=tower.y && x <= tower.x) {

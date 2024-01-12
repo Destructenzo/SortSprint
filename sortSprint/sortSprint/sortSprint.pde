@@ -66,6 +66,9 @@ void keyReleased() {
 }
 void keyPressed() {
   print(keyCode);
+  if (keyCode == 49) {
+    STALIN();
+  }
   if (keyCode == 37) { //moveLeft
     leftArrow = true;
     rightArrow = false;
@@ -85,4 +88,31 @@ void mouseClicked() {
 void pallete(color c1) {
   fill(c1);
   stroke(c1);
+}
+//sortingAlgorithms
+void STALIN() {
+  ArrayList<slot> tempList = new ArrayList<slot>();
+  tempList.add(towers.get(0));
+  for (int i = 0; i < towers.size()-1; i += 1) {
+    slot tower0 = towers.get(i);
+    slot tower1 = towers.get(i+1);
+    if (tower0.y <= tower1.y) {
+      tempList.add(tower1);
+    }
+  }
+  towers = tempList;
+  while (tempList.size() <= 0) {
+    shorten(tempList);
+  }
+  RESIZE();
+}
+
+void RESIZE() { //might be useless. This code runs every frame for some reason?
+  for (int i = 0; i < towers.size(); i += 1) {
+    slot tower = towers.get(i);
+    pallete(#FFAD77);
+    strokeWeight(0);
+    tower.update(ceil((100+(i*(ceil(1000/towers.size()))))), (ceil((1000)/towers.size())));
+    pallete(color(#9FFF9F));
+  }
 }
