@@ -94,9 +94,9 @@ void STALIN() {
   ArrayList<slot> tempList = new ArrayList<slot>();
   tempList.add(towers.get(0));
   for (int i = 0; i < towers.size()-1; i += 1) {
-    slot tower0 = towers.get(i);
+    slot tower0 = tempList.get(tempList.size()-1);
     slot tower1 = towers.get(i+1);
-    if (tower0.y <= tower1.y) {
+    if (tower0.y >= tower1.y) {
       tempList.add(tower1);
     }
   }
@@ -107,6 +107,9 @@ void STALIN() {
   RESIZE();
 }
 
+void BOGO() {
+  
+}
 void RESIZE() { //might be useless. This code runs every frame for some reason?
   for (int i = 0; i < towers.size(); i += 1) {
     slot tower = towers.get(i);
