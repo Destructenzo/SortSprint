@@ -104,25 +104,27 @@ void STALIN() {
       tempList.add(tower1);
     }
   }
-  towers = tempList;
+  towers = new ArrayList<slot>(tempList);
   while (tempList.size() <= 0) {
     shorten(tempList);
+    
   }
   RESIZE();
 }
 
 void BOGO() {
   ArrayList<slot> tempList0 = new ArrayList<slot>();
-  ArrayList<slot> tempList1 = new ArrayList<slot>();
-  tempList1 = towers;
+  ArrayList<slot> tempList1 = new ArrayList<slot>(towers);
   int j;
-  for (int i = 0; i < towers.size()-1; i += 1) {
-    j = round(random(int(0), int(tempList1.size()-1)));
+  for (int i = 0; i < towers.size(); ++i) {
+    j = round(random(0, int(tempList1.size()-1)));
     tempList0.add(tempList1.get(j));
     tempList1.remove(j);
+    //println("l0=",tempList0.size(),"l1 = ",tempList1.size()," j= ",j, "t=",towers.size());
   }
-  towers = tempList0;
+  towers = new ArrayList<slot>(tempList0);
 }
+
 void RESIZE() { //might be useless. This code runs every frame for some reason?
   for (int i = 0; i < towers.size(); i += 1) {
     slot tower = towers.get(i);
