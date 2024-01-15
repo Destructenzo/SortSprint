@@ -1,4 +1,4 @@
-  //sortSprint prototype for the FBLA contests
+//sortSprint prototype for the FBLA contests
 ArrayList<slot> towers = new ArrayList<slot>();
 float temp1;
 boolean rightArrow = false; boolean leftArrow = false; boolean upArrow = false; 
@@ -54,7 +54,7 @@ void input() {
 
 void keyReleased() {
   if (keyCode == 37) { //moveLeft
-    rightArrow = false;
+    leftArrow = false;
   }
   if (keyCode == 38) { //moveUp
     upArrow = false;
@@ -68,6 +68,10 @@ void keyPressed() {
   print(keyCode);
   if (keyCode == 49) {
     STALIN();
+  }
+  print(keyCode);
+  if (keyCode == 50) {
+    BOGO();
   }
   if (keyCode == 37) { //moveLeft
     leftArrow = true;
@@ -108,7 +112,16 @@ void STALIN() {
 }
 
 void BOGO() {
-  
+  ArrayList<slot> tempList0 = new ArrayList<slot>();
+  ArrayList<slot> tempList1 = new ArrayList<slot>();
+  tempList1 = towers;
+  int j;
+  for (int i = 0; i < towers.size()-1; i += 1) {
+    j = round(random(int(0), int(tempList1.size()-1)));
+    tempList0.add(tempList1.get(j));
+    tempList1.remove(j);
+  }
+  towers = tempList0;
 }
 void RESIZE() { //might be useless. This code runs every frame for some reason?
   for (int i = 0; i < towers.size(); i += 1) {

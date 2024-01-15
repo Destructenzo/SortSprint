@@ -38,31 +38,24 @@ class player {
       y -= 1;
       inair = false;
     }
-    //the tower fed into this. for now it checks against everything in existence.                                 ____[]___
-    if (y+h >= tower.y && x+w < tower.x+tower.w &&  x > tower.x && inair == true) { //tower floor TILE IN CENTER [_________]
+    //the tower fed into this. for now it checks against everything in existence.
+    if (x+25 >= tower.x && y+25 > tower.y && x < tower.x) { // tower side
+        x -= VX;
+    }//                                                                                                           ____[]___
+    if (y+h > tower.y && x+w < tower.x+tower.w &&  x > tower.x && inair == true) { //tower floor TILE IN CENTER [_________]   WORKS
       y -= grav;
       inair = false;
       jump = true;
-    }
-    if (y+h >= tower.y && x+w < tower.x+tower.w &&  x > tower.x && inair == true) { //tower floor
+    }                                                                                                     //  []_____
+    if (y+h > tower.y && x < tower.x &&  x+w > tower.x && inair == true) { //tower floor TILE ON LEFT          |_____]
         inair = false;
-        y -=3 ;
+        y -= grav ;
         jump = true;
-    } if (y+25 >= tower.y && x <= tower.x && x+25 >=tower.x+tower.w) { //tower floor
+    } if (y+25 > tower.y && x <= tower.x+tower.w && x+25 >=tower.x) { //tower floor RIGT
       inair = false;
       jump = true;
-      y -= 1;
-    } if (y+25 >= tower.y && x <= tower.x && x >=tower.x+tower.w && y <= tower.y) { //tower floor
-      jump = true;
-      print("center");
-      if (inair == false) {
-          y -= 1;
-      }
-      inair = false;
-    }
-    if (x+25 >= tower.x && y+25 > tower.y && x < tower.x) { // tower side
-        x -= VX;
-    }
+      y -= grav;
+    } 
     if (x >= tower.x && y-25 <=tower.y && x <= tower.x) {
       //grav = 0;
     }
@@ -78,7 +71,7 @@ class player {
       x += VX;
   }
   if (leftArrow == true) {
-    x-= VX;
+      x-= VX;
   }
   }
   //This displays the character, for now just a 25x25 rect, maybe later it can be a 25x25 sprite that checks state and we get a spritesheet
