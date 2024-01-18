@@ -7,14 +7,15 @@ int controls = 0;
 void setup() {
   frameRate(60);
   size(1200,900);
-  for (int i = 0; i < 50; i++) { //i controls amount of columns, use a integer divisor of 1000 for best results
+  for (int i = 0; i < 50; i++) { //i controls amount of columns, use a integer lkkkkdivisor of 1000 for best results
     temp1 = (random(25, 700));
     towers.add(new slot(25, 0, 25, round(temp1)));
   }
-}
+}    
 //everyFramePlays
 void draw() {
   background(0); //black background
+  //player1.inair = true;
   pallete(#FFFFFF);
   rect(0, 750, 100, 50);
   rect(1100, 400, 100, 400);

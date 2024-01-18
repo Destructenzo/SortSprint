@@ -28,6 +28,8 @@ class player {
       leftArrow = true;
     }
   void collision(slot tower) {
+    canRight = true;
+    canLeft = true;
     if (y+25 >= 750 && x+25 < 100 &&  x > -5 && inair == true && grav != 0) { //first platform
       jump = true;
       y -= 1;
@@ -37,11 +39,25 @@ class player {
       jump = true;
       y -= 1;
       inair = false;
-    }
+    } //second, final platform. 
+    if (y+25 >= 400 && x+25 < 1205 &&  x > 1100 && inair == true && grav != 0) { //last platform
+      jump = true;
+      y -= 1;
+      inair = false;
+    }  if (y+25 >= 400 && x < 1100 &&  x+25 > 1100 && inair == true && grav != 0) { //first platform
+    print("plat");
+      jump = true;
+      y -= 1;
+      inair = false;
+    } if (x+25 >= 1100 && y+25 > 400 && x < 1100) { // tower side
+        x -= VX;
+    }//                    
     //the tower fed into this. for now it checks against everything in existence.
     if (x+25 >= tower.x && y+25 > tower.y && x < tower.x) { // tower side
-        x -= VX;
-    }//                                                                                                           ____[]___
+        x -= VX; canRight = false;
+    } if (x <= tower.x+tower.w && y+w > tower.y && x+w > tower.x+tower.w) { // tower side
+        x += VX; canLeft = false;
+    }//                                                                                                          ____[]___
     if (y+h > tower.y && x+w < tower.x+tower.w &&  x > tower.x && inair == true) { //tower floor TILE IN CENTER [_________]   WORKS
       y -= grav;
       inair = false;
@@ -60,17 +76,17 @@ class player {
       //grav = 0;
     }
     if (x <= 0) {x++; print("hit");}
-    if (x >= 1200) {x -= 1;print("rightWall");}
+    if (x+25 >= 1200) {x -= 3;print("rightWall");}
   }
   //this is player input, should run BEFORE collsion
   void move() {
     if (inair == true) {
       y += grav;
     }  
-    if (rightArrow == true) {
+    if (rightArrow == true && canRight == true) {
       x += VX;
   }
-  if (leftArrow == true) {
+  if (leftArrow == true && canLeft == true) {
       x-= VX;
   }
   }

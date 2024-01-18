@@ -1,6 +1,5 @@
 class slot {
   float x, y, h, w;
-  
   slot(int xTemp, int yTemp, int wTemp, int hTemp) {
     x = xTemp;
     y = yTemp;
