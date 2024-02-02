@@ -18,7 +18,7 @@ void setup() {
 void draw() {
   background(0); //black background
   //player1.inair = true;
-  pallete(#FFFFFF);
+  pallete(#0FFF0F);
   rect(0, 750, 100, 50);
   rect(1100, 400, 100, 400);
   input();
@@ -26,8 +26,8 @@ void draw() {
   for (int j = 0; j < 4; j +=1) {
     for (int i = 0; i < towers.size(); i += 1) {
       slot tower = towers.get(i);
-      pallete(#FFAD77);
-      strokeWeight(0);
+      pallete(#0FADA7);
+      strokeWeight(1);
       tower.update(ceil((100+(i*(ceil(1000/towers.size()))))), (ceil((1000)/towers.size())));
       tower.display();
       pallete(color(#9FFF9F));
@@ -71,7 +71,7 @@ void keyReleased() {
   }
 }
 void keyPressed() {
-  print(keyCode);
+  //print(keyCode);
   if (keyCode == 49) {
     STALIN();
   }
@@ -138,11 +138,11 @@ void INSERTION() {
   ArrayList<slot> tempList0 = new ArrayList<slot>();
   ArrayList<slot> tempList1 = new ArrayList<slot>();
   boolean sorted = false;
-  slot tower0;
+  int correct = 0;
+  slot tower0 = towers.get(0);
   slot tower1;
   slot tower2;
   int whichOne = 0;
-  //findStart: starts off from the last spot it was. 
   for (int i = 0; i < towers.size(); i += 1) {
     tower0 = towers.get(i+1);
     tower1 = towers.get(i);
@@ -152,19 +152,22 @@ void INSERTION() {
     }
   }
   tower0 = towers.get(whichOne);
-  towers.remove(whichOne);
   tower1 = towers.get(whichOne-1);
-  for (int i = whichOne; i >= 0; i--) {
-    if (i > 0) {
-      tower1 = towers.get(i-1);
-      print("till goin");
-    }
-    if (sorted == false &&  tower0.y >= tower1.y && i > 0); {
-      towers.add(i, tower0);
-      sorted = true;
-    }
+  towers.remove(whichOne);
+  correct = whichOne;
+  println(correct + " 0.y " + tower0.y + " 1.y " +tower1.y);
+  while (correct > 0 && tower0.y > tower1.y) {
+    correct--;
+    tower1 = towers.get(correct);
+    
+    println(correct + "KillGOD");
   }
-  println("l0=",tower0.y,"l1 = ",tower1.y," j= ",whichOne, "t=",towers.size());
+  if (correct >0) {
+    towers.add(correct+1, tower0);
+  } else {
+    towers.add(correct, tower0);
+  }
+  println("l0=",tower0.y,"l1 = "," j= ",whichOne, "t=",towers.size());
 }
 
 void RESIZE() { //might be useless. This code runs every frame for some reason?
