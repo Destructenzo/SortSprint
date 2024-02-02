@@ -134,40 +134,39 @@ void BOGO() {
   towers = new ArrayList<slot>(tempList0);
 }
 
-void INSERTION() {
-  ArrayList<slot> tempList0 = new ArrayList<slot>();
-  ArrayList<slot> tempList1 = new ArrayList<slot>();
-  boolean sorted = false;
+void INSERTION() { //FINISHED NEEL! I DID IT!
   int correct = 0;
   slot tower0 = towers.get(0);
   slot tower1;
-  slot tower2;
   int whichOne = 0;
   for (int i = 0; i < towers.size(); i += 1) {
-    tower0 = towers.get(i+1);
-    tower1 = towers.get(i);
-    if ((tower0.h < tower1.h)) {
-      whichOne = i+1;
-      i = towers.size();
+    if (!(i == towers.size()-1)) {
+      tower0 = towers.get(i+1);
+      tower1 = towers.get(i);
+      if ((tower0.h < tower1.h)) {
+        whichOne = i+1;
+        i = towers.size();
+      }
     }
   }
+  if (!(whichOne == 0)) {
   tower0 = towers.get(whichOne);
   tower1 = towers.get(whichOne-1);
   towers.remove(whichOne);
   correct = whichOne;
   println(correct + " 0.y " + tower0.y + " 1.y " +tower1.y);
-  while (correct > 0 && tower0.y > tower1.y) {
-    correct--;
-    tower1 = towers.get(correct);
-    
-    println(correct + "KillGOD");
+    while (correct > 0 && tower0.y > tower1.y) {
+      correct--;
+      tower1 = towers.get(correct);
+      println(correct + "KillGOD");
+    }
+    if (correct >0) {
+      towers.add(correct+1, tower0);
+    } else {
+      towers.add(correct, tower0);
+    }
   }
-  if (correct >0) {
-    towers.add(correct+1, tower0);
-  } else {
-    towers.add(correct, tower0);
-  }
-  println("l0=",tower0.y,"l1 = "," j= ",whichOne, "t=",towers.size());
+  //println("l0=",tower0.y,"l1 = "," j= ",whichOne, "t=",towers.size());
 }
 
 void RESIZE() { //might be useless. This code runs every frame for some reason?
