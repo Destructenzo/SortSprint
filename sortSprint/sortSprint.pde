@@ -18,7 +18,7 @@ void setup() {
 void draw() {
   background(0); //black background
   //player1.inair = true;
-  pallete(#0FFF0F);
+  pallete(#0F0F8F);
   rect(0, 750, 100, 50);
   rect(1100, 400, 100, 400);
   input();
@@ -26,7 +26,8 @@ void draw() {
   for (int j = 0; j < 4; j +=1) {
     for (int i = 0; i < towers.size(); i += 1) {
       slot tower = towers.get(i);
-      pallete(#0FADA7);
+      pallete(#9a0a9a);
+      stroke(#0F090F);
       strokeWeight(1);
       tower.update(ceil((100+(i*(ceil(1000/towers.size()))))), (ceil((1000)/towers.size())));
       tower.display();
@@ -81,8 +82,9 @@ void keyPressed() {
   }
   if (keyCode == 51) {
     INSERTION();
-  }
-  if (keyCode == 37) { //moveLeft
+  } if (keyCode == 52) {
+    BUBBLE();
+  } if (keyCode == 37) { //moveLeft
     leftArrow = true;
     rightArrow = false;
   }
@@ -163,10 +165,30 @@ void INSERTION() { //FINISHED NEEL! I DID IT!
     if (correct >0) {
       towers.add(correct+1, tower0);
     } else {
-      towers.add(correct, tower0);
+      tower1 = towers.get(0);
+      if (tower0.y < tower1.y) {
+        towers.add(1, tower0);
+      } if (tower0.y > tower1.y) {
+        towers.add(0, tower0);
+      }
     }
   }
   //println("l0=",tower0.y,"l1 = "," j= ",whichOne, "t=",towers.size());
+}
+
+void BUBBLE() {
+  slot tower0 = towers.get(0);
+  slot tower1 = towers.get(1);
+  for (int i = 0; i < towers.size()-1; i += 1) { 
+    tower0 = towers.get(i);
+    tower1 = towers.get(i+1);
+    if (tower0.y < tower1.y) {
+      towers.remove(i);
+      towers.add(i+1, tower0);
+    } if (tower0.y > tower1.y) {
+      
+    }
+  }
 }
 
 void RESIZE() { //might be useless. This code runs every frame for some reason?
