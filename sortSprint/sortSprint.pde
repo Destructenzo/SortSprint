@@ -1,12 +1,17 @@
-//sortSprint prototype for the FBLA contests
+//sortSprint prototype for the FBLA contests  SPIDER: Student Production Imitation & Duplication Economy Robot
 ArrayList<slot> towers = new ArrayList<slot>();
 float temp1;
 boolean rightArrow = false; boolean leftArrow = false; boolean upArrow = false; 
 player player1 = new player(10, 600);
-PImage[] prototype = new PImage[4];
+PImage[] prototype = new PImage[5];
 int controls = 0;
 void setup() {
-  prototype[1] = loadImage("prototype.png");
+  prototype[0] = loadImage("prototype.png");
+  prototype[1] = loadImage("spiderSimR.png");
+  prototype[2] = loadImage("spiderSimR1.png");
+  prototype[3] = loadImage("spiderSimL.png");
+  prototype[4] = loadImage("spiderSimL1.png");
+  
   frameRate(60);
   size(1200,900);
   for (int i = 0; i < 40; i++) { //i controls amount of columns, use a integer lkkkkdivisor of 1000 for best results. Recommending max: 40 to prevent tower climbing with clipping.
@@ -191,6 +196,11 @@ void BUBBLE() {
   }
 }
 
+void QUICK() {
+  slot tower0 = towers.get(0);
+  slot tower1 = towers.get(1);
+  
+}
 void RESIZE() { //might be useless. This code runs every frame for some reason?
   for (int i = 0; i < towers.size(); i += 1) {
     slot tower = towers.get(i);

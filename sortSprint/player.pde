@@ -2,7 +2,7 @@ class player {
   float x = 0, y= 0, w = 25, h = 25, jFrames = 0;
   float grav = 2; float fall = 0;
   boolean canRight = true, canLeft = true, jump = false, stop = false, inair = true;
-  int VX = 3;
+  int VX = 3; int disp = 0; int dispStep = 0;
   player (int baseX, int baseY) {
     x = baseX;
     y = baseY;
@@ -85,15 +85,27 @@ class player {
     }  
     if (rightArrow == true && canRight == true) {
       x += VX;
+      disp = 1;
+      if (inair = true) {
+        
+      }
+      
   }
   if (leftArrow == true && canLeft == true) {
       x-= VX;
+      disp = 3;
   }
   }
   //This displays the character, for now just a 25x25 rect, maybe later it can be a 25x25 sprite that checks state and we get a spritesheet
   void display() {
     //println(x + "," + y + "," + "," + inair);
     //rect(x, y, w, h);
-    image(prototype[1], (x), (y));
+    if (dispStep == 1) {
+      dispStep = 0;
+    }
+    if ((millis()%5) == 0) {
+      dispStep = 1;
+    } 
+    image(prototype[disp+dispStep], (x), (y));
   }
 }
