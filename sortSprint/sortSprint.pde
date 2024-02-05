@@ -1,6 +1,6 @@
 //sortSprint prototype for the FBLA contests  SPIDER: Student Production Imitation & Duplication Economy Robot
 ArrayList<slot> towers = new ArrayList<slot>();
-float temp1;
+float temp1; int menu = 1; int ENERGY = 100;
 boolean rightArrow = false; boolean leftArrow = false; boolean upArrow = false; 
 player player1 = new player(10, 600);
 PImage[] prototype = new PImage[5];
@@ -27,7 +27,9 @@ void draw() {
   rect(0, 750, 100, 50);
   rect(1100, 400, 100, 400);
   input();
-  
+  if (ENERGY <0) {
+    ENERGY = 0;
+  }
   for (int j = 0; j < 4; j +=1) {
     for (int i = 0; i < towers.size(); i += 1) {
       slot tower = towers.get(i);
@@ -40,8 +42,16 @@ void draw() {
       player1.collision(tower);
     }
   }
+  pallete(#00FF00);
+  rect(1125, 700-ENERGY, 50, ENERGY);
   player1.move();
   player1.display();
+  if ((menu == 1)) {
+    pallete(#000000);
+    rect(0,0,1200,800);
+    pallete(#FFFFFF);
+    rect(100, 100, 100, 20);
+  }
 }  
 void input() {
   if (upArrow == true) {
@@ -79,16 +89,26 @@ void keyReleased() {
 void keyPressed() {
   //print(keyCode);
   if (keyCode == 49) {
-    STALIN();
+    if (ENERGY >= 0) {
+      STALIN();
+    }
   }
   print(keyCode);
   if (keyCode == 50) {
-    BOGO();
+    if (ENERGY >= 0) {
+      BOGO();
+    }
   }
   if (keyCode == 51) {
-    INSERTION();
+    if (ENERGY >=5) {
+      INSERTION();
+      ENERGY -= 4;
+    }
   } if (keyCode == 52) {
-    BUBBLE();
+    if (ENERGY >= 8) {
+      BUBBLE();
+      ENERGY -= 8;
+    }
   } if (keyCode == 37) { //moveLeft
     leftArrow = true;
     rightArrow = false;
@@ -99,10 +119,18 @@ void keyPressed() {
   if (keyCode == 39) { //moveRight
     rightArrow = true;
     leftArrow = false;
+  } if (keyCode == 8) {
+    menu +=1;
+    if (menu == 2) {
+      menu = 0;
+    }
   }
 }
 void mouseClicked() {
   println(mouseX + "," + mouseY);
+  if (mouseX >100 && mouseX <300 && 120 > mouseY && mouseY >100 ) {
+    print("firstButton");
+  }
 }
 
 void pallete(color c1) {

@@ -3,6 +3,7 @@ class player {
   float grav = 2; float fall = 0;
   boolean canRight = true, canLeft = true, jump = false, stop = false, inair = true;
   int VX = 3; int disp = 0; int dispStep = 0;
+  int BUFF = 0; int INT = 0; int CHA = 0; int SPD = 0;
   player (int baseX, int baseY) {
     x = baseX;
     y = baseY;
