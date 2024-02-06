@@ -13,7 +13,7 @@ class player {
     if (jump == false) {
       fall = millis();
     }
-    if (jump == true && (fall+500 >= millis())) {
+    if (jump == true && (fall+400+(BUFF*(250/20)) >= millis())) {
       y -= 7;
     } else {
       jump = false;
