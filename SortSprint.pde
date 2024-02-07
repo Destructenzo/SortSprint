@@ -44,7 +44,6 @@ void keyPressed() {
     }
     if (keyCode == 38) { //moveUp
     upArrow = true;
-    player1.jump();
     }
     if (keyCode == 39) { //moveRight
     rightArrow = true;
@@ -123,6 +122,12 @@ void draw() {
  rect(1125, 700-ENERGY, 50, ENERGY);
  player1.move();
  player1.display();
+ if ((menu == 1)) {
+ pallete(#000000);
+ rect(0, 0, 1200, 800);
+ pallete(#FFFFFF);
+ rect(100, 100, 100, 20);
+ }
  }
 
  if (leftArrow == true) {

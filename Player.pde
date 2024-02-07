@@ -116,7 +116,6 @@ public class player {
       disp = 3;
     }
   }
-  
   //This displays the character, for now just a 25x25 rect, maybe later it can be a 25x25 sprite that checks state and we get a spritesheet
   void display() {
     //println(x + "," + y + "," + "," + inair);
