@@ -64,25 +64,6 @@ void keyPressed() {
     }
   }
 }
- void input() {
- if (upArrow == true) {
- player1.jump();
- player1.inair = true;
- }
- }
-void keyReleased() {
- if (keyCode == 37) { //moveLeft
- leftArrow = false;
- }
- if (keyCode == 38) { //moveUp
- upArrow = false;
- player1.jump = false;
- }
- if (keyCode == 39) { //moveRight
- rightArrow = false;
- }
- }
- 
 void draw() {
   if (!myMenu.getStartButton().getPressed()) {
     myMenu.display();
@@ -129,7 +110,13 @@ void draw() {
  rect(100, 100, 100, 20);
  }
  }
-
+ void input() {
+ if (upArrow == true) {
+ if (controls == 0) {
+ player1.jump();
+ player1.inair = true;
+ }
+ }
  if (leftArrow == true) {
  if (controls == 0) {
  player1.moveLeft();
@@ -145,7 +132,18 @@ void draw() {
  }
  
  
- 
+ void keyReleased() {
+ if (keyCode == 37) { //moveLeft
+ leftArrow = false;
+ }
+ if (keyCode == 38) { //moveUp
+ upArrow = false;
+ player1.jump = false;
+ }
+ if (keyCode == 39) { //moveRight
+ rightArrow = false;
+ }
+ }
  void keyPressed() {
  //print(keyCode);
  if (keyCode == 49) {
