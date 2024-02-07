@@ -1,17 +1,13 @@
 public class Button {
-  private int x, y, l, w, tSize, x1, y1, l1, w1;
+  private int x, y, l, w, tSize;
   private color cB, cT;
   String t;
   private boolean hasBeenPressed = false;
   Button(int x, int y, int l, int w, color cB, String t, int tSize, color cT) {
     this.x = x;
-    this.x1 = x;
     this.y = y;
-    this.y1 = y;
     this.l = l;
-    this.l1 =l;
     this.w = w;
-    this.w1 = w;
     this.cB = cB;
     this.tSize = tSize;
     this.t = t;
@@ -46,11 +42,7 @@ public class Button {
   }
   public void togglePressed() {
     hasBeenPressed = !hasBeenPressed;
-    if(hasBeenPressed){
     this.setSize(-1, -1, 0, 0);
-    }else if (!hasBeenPressed){
-      this.setSize(x1, y1, l1, w1);
-    }
   }
   public void setX(int x) {
     this.x = x;
