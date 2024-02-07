@@ -10,8 +10,17 @@ Button startButton;
 Button quitButton;
 Game game1;
 Button skipButton;
-
+boolean rightArrow = false;
+boolean leftArrow = false;
+boolean upArrow = false;
+player player1 = new player(10, 600);
 void setup() {
+  PImage[] prototype = new PImage[5];
+  prototype[0] = loadImage("prototype.png");
+  prototype[1] = loadImage("spiderSimR.png");
+  prototype[2] = loadImage("spiderSimR1.png");
+  prototype[3] = loadImage("spiderSimL.png");
+  prototype[4] = loadImage("spiderSimL1.png");
   size(1200, 900);
   frameRate(60);
   startButton = new Button(300, 300, 600, 200, col2, "Start", 100, col3);
@@ -37,7 +46,7 @@ void keyPressed() {
       game1.insertion();
       game1.insertion();
       game1.insertion();
-    }else if ((keyCode == 52) && (game1.getBubble()) && (game1.getCooldown() ==0) ) {
+    } else if ((keyCode == 52) && (game1.getBubble()) && (game1.getCooldown() ==0) ) {
       game1.bubble();
       game1.bubble();
     }
