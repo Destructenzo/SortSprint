@@ -22,7 +22,7 @@ void mousePressed() {
   if (myMenu.getStartButton().isHovered()) {
     myMenu.getStartButton().togglePressed();
     skipButton = new Button(110, 60, 500, 220, col2, "Skip for Now", 90, col3);
-    game1 = new Game(720, 360, col4);
+    game1 = new Game(720, 360, col4, 36000);
     gameNumber = 1;
   }
 }

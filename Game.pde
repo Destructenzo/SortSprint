@@ -8,7 +8,7 @@ public class Game extends Screen {
   private boolean canBOGO = true;
   private boolean canInsertion = true;
   private boolean canBubble = true;
-  private int score, cooldownTimer;
+  private int score;
   //boolean rightArrow = false;
   //boolean leftArrow = false;
   //boolean upArrow = false;
@@ -18,6 +18,7 @@ public class Game extends Screen {
     for (int i = 0; i < 40; i++) {
       temp1 = (random(25, 700));
       towers.add(new Slot(25, 0, 25, round(temp1)));
+      this.score = s;
     }
   }
   public void display() {
@@ -25,6 +26,7 @@ public class Game extends Screen {
     if (cooldown > 0) {
       cooldown --;
     }
+    score--;
     rect(0, 750, 100, 50);
     rect(1100, 400, 100, 400);
     for (int j = 0; j < 4; j +=1) {
@@ -40,6 +42,13 @@ public class Game extends Screen {
         //       player1.collision(tower);
       }
     }
+    fill(col2);
+    rect(0, 0, 400, 100);
+    textSize(50);
+    fill(col3);
+    textAlign(LEFT, CENTER);
+    text("Score: " + ceil(((float)score)/60), 10, 25);
+    text("CoolDown: " + ceil(((float)cooldown)/60), 10, 75);
   }
   public void toggleGame() {
     isOver = !isOver;

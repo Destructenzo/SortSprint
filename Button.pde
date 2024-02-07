@@ -26,9 +26,9 @@ public class Button {
     rectMode(CORNER);
     rect(x, y, l, w);
     textSize(tSize);
-    textAlign(CENTER);
+    textAlign(CENTER, CENTER);
     fill(cT);
-    text(t, x+l/2, y+w/2+25);
+    text(t, x+l/2, y+w/2);
   }
   public boolean isHovered() {
     if ((x <= mouseX) && (mouseX <= (x+l)) && (y <= mouseY) && (mouseY <= (y+w))) {
