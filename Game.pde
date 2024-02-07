@@ -29,7 +29,7 @@ public class Game extends Screen {
     score--;
     rect(0, 750, 100, 50);
     rect(1100, 400, 100, 400);
-    player1.move();
+    
     for (int j = 0; j < 4; j +=1) {
       for (int i = 0; i < towers.size(); i += 1) {
         Slot tower = towers.get(i);
@@ -43,6 +43,8 @@ public class Game extends Screen {
         player1.collision(tower);
       }
     }
+    input(); //sorry it is at the bottom of the SortSprint tab.
+    player1.move();
     player1.display();
     fill(col2);
     rect(0, 0, 400, 100);
