@@ -14,8 +14,8 @@ boolean rightArrow = false;
 boolean leftArrow = false;
 boolean upArrow = false;
 player player1 = new player(10, 600);
+PImage[] prototype = new PImage[5];
 void setup() {
-  PImage[] prototype = new PImage[5];
   prototype[0] = loadImage("prototype.png");
   prototype[1] = loadImage("spiderSimR.png");
   prototype[2] = loadImage("spiderSimR1.png");
@@ -37,6 +37,18 @@ void mousePressed() {
 }
 void keyPressed() {
   if (gameNumber == 1) {
+    print(keyCode);
+    if (keyCode == 37) { //moveLeft
+    leftArrow = true;
+    rightArrow = false;
+    }
+    if (keyCode == 38) { //moveUp
+    upArrow = true;
+    }
+    if (keyCode == 39) { //moveRight
+    rightArrow = true;
+    leftArrow = false;
+    }
     if ((keyCode == 49) && (game1.getStalin()) && (game1.getCooldown() ==0) ) {
       game1.stalin();
     } else if ((keyCode == 50) && (game1.getBOGO()) && (game1.getCooldown() ==0) ) {
@@ -59,7 +71,6 @@ void draw() {
     game1.display();
   }
 }
-
 
 /*
   PImage[] prototype = new PImage[5];
