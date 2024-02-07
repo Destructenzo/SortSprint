@@ -4,10 +4,12 @@ color col3 = color(170, 149, 24);
 color col4 = color(49, 18, 29);
 float intelligence = random(0, 2);
 float luck = random(0, 2);
+int controls = 0;
 int gameNumber = 0;
 Menu myMenu;
 Button startButton;
 Button quitButton;
+Button exitButton;
 Game game1;
 Button skipButton;
 boolean rightArrow = false;
@@ -24,30 +26,28 @@ void setup() {
   size(1200, 900);
   frameRate(60);
   startButton = new Button(300, 300, 600, 200, col2, "Start", 100, col3);
-  quitButton = new Button (300, 600, 600, 200, col2, "Quit", 100, col3);
+  quitButton = new Button(300, 600, 600, 200, col2, "Quit", 100, col3);
+  exitButton = new Button(1100, 0, 100, 100, col2, "Exit", 50, col3);
   myMenu = new Menu(720, 360, col1, startButton, quitButton);
 }
 void mousePressed() {
   if (myMenu.getStartButton().isHovered()) {
     myMenu.getStartButton().togglePressed();
     skipButton = new Button(110, 60, 500, 220, col2, "Skip for Now", 90, col3);
-    game1 = new Game(720, 360, col4, 36000);
+    game1 = new Game(720, 360, col4, 36000, exitButton);
     gameNumber = 1;
   }
 }
 void keyPressed() {
   if (gameNumber == 1) {
-    print(keyCode);
     if (keyCode == 37) { //moveLeft
-    leftArrow = true;
-    rightArrow = false;
-    }
-    if (keyCode == 38) { //moveUp
-    upArrow = true;
-    }
-    if (keyCode == 39) { //moveRight
-    rightArrow = true;
-    leftArrow = false;
+      leftArrow = true;
+      rightArrow = false;
+    } else if (keyCode == 38) { //moveUp
+      upArrow = true;
+    } else if (keyCode == 39) { //moveRight
+      rightArrow = true;
+      leftArrow = false;
     }
     if ((keyCode == 49) && (game1.getStalin()) && (game1.getCooldown() ==0) ) {
       game1.stalin();
@@ -64,25 +64,20 @@ void keyPressed() {
     }
   }
 }
- void input() {
- if (upArrow == true) {
- player1.jump();
- player1.inair = true;
- }
- }
+
 void keyReleased() {
- if (keyCode == 37) { //moveLeft
- leftArrow = false;
- }
- if (keyCode == 38) { //moveUp
- upArrow = false;
- player1.jump = false;
- }
- if (keyCode == 39) { //moveRight
- rightArrow = false;
- }
- }
- 
+  if (keyCode == 37) { //moveLeft
+    leftArrow = false;
+  }
+  if (keyCode == 38) { //moveUp
+    upArrow = false;
+    player1.jump = false;
+  }
+  if (keyCode == 39) { //moveRight
+    rightArrow = false;
+  }
+}
+
 void draw() {
   if (!myMenu.getStartButton().getPressed()) {
     myMenu.display();
@@ -129,7 +124,7 @@ void draw() {
  rect(100, 100, 100, 20);
  }
  }
-
+ 
  if (leftArrow == true) {
  if (controls == 0) {
  player1.moveLeft();
