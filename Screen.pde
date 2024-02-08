@@ -1,5 +1,5 @@
-public class Screen {
-  private int x , y;
+public class Screen {//superclass for all screens. makes background one color, returns canvas size too.
+  private int x , y;//instance variables and constructor below
   private color c;
   Screen(int x, int y, color c) {
     this.x = x;
@@ -10,7 +10,7 @@ public class Screen {
     background(c);
   }
   public int getX() {
-    return this.x;
+    return this.x;//getter methods
   }
   public int getY() {
     return this.y;

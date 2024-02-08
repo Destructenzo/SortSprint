@@ -1,5 +1,5 @@
-public class Slot {
-  private int x, y, h, w;
+public class Slot {//class for all of the towers in the main game
+  private int x, y, h, w;//instance variables and constructor below
   Slot(int x, int y, int w, int h ) {
     this.x = x;
     this.y = y;
@@ -10,7 +10,7 @@ public class Slot {
     this.x = x;
     this.w = w;
   }
-  public void setX(int x) {
+  public void setX(int x) {//setter methods
     this.x = x;
   }
   public void setY(int y) {
@@ -28,7 +28,7 @@ public class Slot {
     this.setW(w);
     this.setH(h);
   }
-  public int getX(){
+  public int getX(){//getter methods
     return x;
   }
   public int getY() {
@@ -41,7 +41,7 @@ public class Slot {
     return h;
   }
   public void display() {
-    y = 800-h;
+    y = 900-h;
     rect(x, y, w, h);
   }
 }
