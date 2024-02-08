@@ -21,7 +21,7 @@ public class Menu extends Screen {//main title screen
     rectMode(CORNER);
     rect(250, 50, 700, 200);
     textAlign(CENTER, CENTER);
-    textSize(125);
+    textSize(80);
     fill(col3);
     text("SortSprint", 600, 150);
   }

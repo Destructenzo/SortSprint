@@ -38,6 +38,7 @@ void setup() {//loads sprites for player and boss objects, initializes al button
   bigBoiPics[1] = loadImage("IRSL.png");
   bigBoiPics[2] = loadImage("IRSR.png");
   bigBoiPics[3] = loadImage("IRSA.png");
+  textFont(loadFont("AniMeMatrix-MB_EN-24.vlw"));
   size(1200, 900);
   frameRate(60);
   startButton = new Button(300, 350, 600, 200, col2, "Start", 100, col3);
