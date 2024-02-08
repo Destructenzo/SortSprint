@@ -9,27 +9,52 @@ public class Game extends Screen {
   private boolean canInsertion = true;
   private boolean canBubble = true;
   private int score;
+  private Button exit;
   //boolean rightArrow = false;
   //boolean leftArrow = false;
   //boolean upArrow = false;
   //player player1 = new player(10, 600);
-  public Game(int x, int y, color c, int s) {
+  public Game(int x, int y, color c, int s, Button b) {
     super(x, y, c);
     for (int i = 0; i < 40; i++) {
       temp1 = (random(25, 700));
       towers.add(new Slot(25, 0, 25, round(temp1)));
       this.score = s;
+      this.exit = b;
+    }
+  }
+  public void input() {
+    if (upArrow == true) {
+      if (controls == 0) {
+        player1.jump();
+        player1.inair = true;
+      }
+    }
+    if (leftArrow == true) {
+      if (controls == 0) {
+        player1.moveLeft();
+        player1.inair = true;
+      }
+    }
+    if (rightArrow == true) {
+      if (controls == 0) {
+        player1.moveRight();
+        player1.inair = true;
+      }
     }
   }
   public void display() {
     super.display();
+    exit.display();
     if (cooldown > 0) {
       cooldown --;
     }
     score--;
+    stroke(0);
+    strokeWeight(1);
     rect(0, 750, 100, 50);
     rect(1100, 400, 100, 400);
-    
+    input(); //sorry it is at the bottom of the SortSprint tab.
     for (int j = 0; j < 4; j +=1) {
       for (int i = 0; i < towers.size(); i += 1) {
         Slot tower = towers.get(i);
@@ -43,16 +68,17 @@ public class Game extends Screen {
         player1.collision(tower);
       }
     }
-    input(); //sorry it is at the bottom of the SortSprint tab.
-    player1.move();
-    player1.display();
     fill(col2);
     rect(0, 0, 400, 100);
     textSize(50);
     fill(col3);
     textAlign(LEFT, CENTER);
+    stroke(0);
+    strokeWeight(1);
     text("Score: " + ceil(((float)score)/60), 10, 25);
     text("CoolDown: " + ceil(((float)cooldown)/60), 10, 75);
+    player1.move();
+    player1.display();
   }
   public void toggleGame() {
     isOver = !isOver;
@@ -115,7 +141,7 @@ public class Game extends Screen {
     towers = new ArrayList<Slot>(tempList0);
   }
   public void insertion() { //FINISHED NEEL! I DID IT!
-    cooldown += 30;
+    cooldown += 120;
     int correct = 0;
     Slot tower0 = towers.get(0);
     Slot tower1;
@@ -157,7 +183,7 @@ public class Game extends Screen {
   }
 
   public void bubble() {
-    cooldown +=60;
+    cooldown += 120;
     Slot tower0 = towers.get(0);
     Slot tower1 = towers.get(1);
     for (int i = 0; i < towers.size()-1; i ++) {

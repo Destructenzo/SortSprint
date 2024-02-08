@@ -4,10 +4,12 @@ color col3 = color(170, 149, 24);
 color col4 = color(49, 18, 29);
 float intelligence = random(0, 2);
 float luck = random(0, 2);
+int controls = 0;
 int gameNumber = 0;
 Menu myMenu;
 Button startButton;
 Button quitButton;
+Button exitButton;
 Game game1;
 Button skipButton;
 boolean rightArrow = false;
@@ -16,7 +18,7 @@ boolean upArrow = false;
 player player1 = new player(10, 600);
 PImage[] prototype = new PImage[5];
 void setup() {
-  prototype[0] = loadImage("prototype.png");
+  prototype[0] = loadImage("spiderSimR.png");
   prototype[1] = loadImage("spiderSimR.png");
   prototype[2] = loadImage("spiderSimR1.png");
   prototype[3] = loadImage("spiderSimL.png");
@@ -24,65 +26,10 @@ void setup() {
   size(1200, 900);
   frameRate(60);
   startButton = new Button(300, 300, 600, 200, col2, "Start", 100, col3);
-  quitButton = new Button (300, 600, 600, 200, col2, "Quit", 100, col3);
-  myMenu = new Menu(720, 360, col1, startButton, quitButton);
+  exitButton = new Button(300, 600, 600, 200, col2, "Exit", 100, col3);
+  quitButton = new Button(1100, 0, 100, 100, col2, "Quit", 50, col3);
+  myMenu = new Menu(720, 360, col1, startButton, exitButton);
 }
-void mousePressed() {
-  if (myMenu.getStartButton().isHovered()) {
-    myMenu.getStartButton().togglePressed();
-    skipButton = new Button(110, 60, 500, 220, col2, "Skip for Now", 90, col3);
-    game1 = new Game(720, 360, col4, 36000);
-    gameNumber = 1;
-  }
-}
-void keyPressed() {
-  if (gameNumber == 1) {
-    print(keyCode);
-    if (keyCode == 37) { //moveLeft
-    leftArrow = true;
-    rightArrow = false;
-    }
-    if (keyCode == 38) { //moveUp
-    upArrow = true;
-    }
-    if (keyCode == 39) { //moveRight
-    rightArrow = true;
-    leftArrow = false;
-    }
-    if ((keyCode == 49) && (game1.getStalin()) && (game1.getCooldown() ==0) ) {
-      game1.stalin();
-    } else if ((keyCode == 50) && (game1.getBOGO()) && (game1.getCooldown() ==0) ) {
-      game1.bogo();
-    } else if ((keyCode == 51) && (game1.getInsertion()) && (game1.getCooldown() ==0) ) {
-      game1.insertion();
-      game1.insertion();
-      game1.insertion();
-      game1.insertion();
-    } else if ((keyCode == 52) && (game1.getBubble()) && (game1.getCooldown() ==0) ) {
-      game1.bubble();
-      game1.bubble();
-    }
-  }
-}
- void input() {
- if (upArrow == true) {
- player1.jump();
- player1.inair = true;
- }
- }
-void keyReleased() {
- if (keyCode == 37) { //moveLeft
- leftArrow = false;
- }
- if (keyCode == 38) { //moveUp
- upArrow = false;
- player1.jump = false;
- }
- if (keyCode == 39) { //moveRight
- rightArrow = false;
- }
- }
- 
 void draw() {
   if (!myMenu.getStartButton().getPressed()) {
     myMenu.display();
@@ -90,6 +37,60 @@ void draw() {
     game1.display();
   }
 }
+void mousePressed() {
+  if (myMenu.getQuitButton().isHovered()) {
+    exit();
+  }
+  if (myMenu.getStartButton().isHovered()) {
+    myMenu.getStartButton().togglePressed();
+    game1 = new Game(720, 360, col4, 36000, quitButton);
+    gameNumber = 1;
+    if (quitButton.getPressed()) {
+      quitButton.togglePressed();
+    }
+  }
+  if (quitButton.isHovered()) {
+    quitButton.togglePressed();
+    startButton.togglePressed();
+  }
+}
+void keyPressed() {
+  if (gameNumber == 1) {
+    if (keyCode == 37) { //moveLeft
+      leftArrow = true;
+      rightArrow = false;
+    } else if (keyCode == 38) { //moveUp
+      upArrow = true;
+    } else if (keyCode == 39) { //moveRight
+      rightArrow = true;
+      leftArrow = false;
+    }
+    if ((keyCode == 49) && (game1.getStalin()) && (game1.getCooldown() ==0) ) {
+      game1.stalin();
+    } else if ((keyCode == 50) && (game1.getBOGO()) && (game1.getCooldown() ==0) ) {
+      game1.bogo();
+    } else if ((keyCode == 51) && (game1.getInsertion()) && (game1.getCooldown() ==0) ) {
+      game1.insertion();
+    } else if ((keyCode == 52) && (game1.getBubble()) && (game1.getCooldown() ==0) ) {
+      game1.bubble();
+    }
+  }
+}
+
+void keyReleased() {
+  if (keyCode == 37) { //moveLeft
+    leftArrow = false;
+  }
+  if (keyCode == 38) { //moveUp
+    upArrow = false;
+    player1.jump = false;
+  }
+  if (keyCode == 39) { //moveRight
+    rightArrow = false;
+  }
+}
+
+
 
 /*
   PImage[] prototype = new PImage[5];
@@ -129,7 +130,7 @@ void draw() {
  rect(100, 100, 100, 20);
  }
  }
-
+ 
  if (leftArrow == true) {
  if (controls == 0) {
  player1.moveLeft();

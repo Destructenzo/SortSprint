@@ -1,6 +1,5 @@
 public class Screen {
-  private int x;
-  private int y;
+  private int x , y;
   private color c;
   Screen(int x, int y, color c) {
     this.x = x;
