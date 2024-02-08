@@ -1,5 +1,5 @@
 public class Button {
-  private int x, y, l, w, tSize, x1, y1, l1, w1;//instnance vairables and constructor
+  private int x, y, l, w, tSize, x1, y1, l1, w1;
   private color cB, cT;
   String t;
   private boolean hasBeenPressed = false;
@@ -19,7 +19,7 @@ public class Button {
   }
   public void display() {
 
-    if (this.isHovered()) {//highlights the button if cursor is on top
+    if (this.isHovered()) {
       strokeWeight(10);
       stroke(255, 255, 0);
     } else {
@@ -34,14 +34,14 @@ public class Button {
     fill(cT);
     text(t, x+l/2, y+w/2);
   }
-  public boolean isHovered() {//detects if cursor is on top of the button
+  public boolean isHovered() {
     if ((x <= mouseX) && (mouseX <= (x+l)) && (y <= mouseY) && (mouseY <= (y+w))) {
       return true;
     } else {
       return false;
     }
   }
-  public boolean getPressed() {//getter method for if the button has been pressed.
+  public boolean getPressed() {
     return hasBeenPressed;
   }
   public void togglePressed() {
@@ -52,7 +52,7 @@ public class Button {
       this.setSize(x1, y1, l1, w1);
     }
   }
-  public void setX(int x) {//setter methods
+  public void setX(int x) {
     this.x = x;
   }
   public void setY(int y) {
@@ -63,9 +63,6 @@ public class Button {
   }
   public void setW(int w) {
     this.w = w;
-  }
-  public void setColor( color c){
-    this.cB = c;
   }
   public void setSize(int x, int y, int l, int w) {
     this.setX(x);

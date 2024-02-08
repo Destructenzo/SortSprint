@@ -1,42 +1,23 @@
 public class player {
-  private float x = 0;//instance variables
-  private float y= 0;
-  private float w = 25;
-  private float h = 25;
+  private float x = 0, y= 0, w = 25, h = 25;
+  //jFrames = 0;
   private float grav = 2;
   private float fall = 0;
-  private boolean canRight = true;
-  private boolean canLeft = true;
-  private boolean jump = false;
-  private boolean inair = true;
+  private boolean canRight = true, canLeft = true, jump = false, inair = true;
+  //stop = false,
   private int VX = 3;
   private int disp = 0;
   private int dispStep = 0;
   private int BUFF = 0;
+  //private int INT = 0;
+  //private int CHA = 0;
+  //private int SPD = 0;
   player (float x, float y) {
     this.x = x;
     this.y = y;
   }
-  public float getX(){
-    return x;
-  }
-  public float getY(){
-    return y;
-  }
-  public float getW(){
-    return w;
-  }
-  public float getH(){
-    return h;
-  }
   public void setJump(boolean j) {
     this.jump = j;
-  }
-  public void setX(float x){
-    this.x = x;
-  }
-  public void setY(float y){
-    this.y = y;
   }
   void jump() {//this is jump, works .5 seconds or 500 millis. Change the 500 to raise the time
     if (jump == false) {
@@ -129,7 +110,6 @@ public class player {
         justOne.add(new boss(400, 25));
         bossTime = true;
       } 
-      //bossTime = true;
     }
   }
   //this is player input, should run BEFORE collsion
