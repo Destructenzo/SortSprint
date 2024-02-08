@@ -99,7 +99,7 @@ public class player {
     }
     if (x+25 >= 1200) {
       x -= 3;
-      print("rightWall");
+      bossTime = true;
     }
   }
   //this is player input, should run BEFORE collsion
