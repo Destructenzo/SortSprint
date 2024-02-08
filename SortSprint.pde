@@ -15,31 +15,43 @@ Button skipButton;
 boolean rightArrow = false;
 boolean leftArrow = false;
 boolean upArrow = false;
-boolean bossTime = false;
 player player1 = new player(10, 600);
-boss THEGOV = new boss();
-PImage[] bigBoiPics = new PImage[5];
 PImage[] prototype = new PImage[5];
 void setup() {
-  prototype[0] = loadImage("prototype.png");
+  prototype[0] = loadImage("spiderSimR.png");
   prototype[1] = loadImage("spiderSimR.png");
   prototype[2] = loadImage("spiderSimR1.png");
   prototype[3] = loadImage("spiderSimL.png");
   prototype[4] = loadImage("spiderSimL1.png");
-  bigBoiPics[0] = loadImage("IRS.png");
   size(1200, 900);
   frameRate(60);
   startButton = new Button(300, 300, 600, 200, col2, "Start", 100, col3);
-  quitButton = new Button(300, 600, 600, 200, col2, "Quit", 100, col3);
-  exitButton = new Button(1100, 0, 100, 100, col2, "Exit", 50, col3);
-  myMenu = new Menu(720, 360, col1, startButton, quitButton);
+  exitButton = new Button(300, 600, 600, 200, col2, "Exit", 100, col3);
+  quitButton = new Button(1100, 0, 100, 100, col2, "Quit", 50, col3);
+  myMenu = new Menu(720, 360, col1, startButton, exitButton);
+}
+void draw() {
+  if (!myMenu.getStartButton().getPressed()) {
+    myMenu.display();
+  } else if (myMenu.getStartButton().getPressed() && !game1.getOver()) {
+    game1.display();
+  }
 }
 void mousePressed() {
+  if (myMenu.getQuitButton().isHovered()) {
+    exit();
+  }
   if (myMenu.getStartButton().isHovered()) {
     myMenu.getStartButton().togglePressed();
-    skipButton = new Button(110, 60, 500, 220, col2, "Skip for Now", 90, col3);
-    game1 = new Game(720, 360, col4, 36000, exitButton);
+    game1 = new Game(720, 360, col4, 36000, quitButton);
     gameNumber = 1;
+    if (quitButton.getPressed()) {
+      quitButton.togglePressed();
+    }
+  }
+  if (quitButton.isHovered()) {
+    quitButton.togglePressed();
+    startButton.togglePressed();
   }
 }
 void keyPressed() {
@@ -59,11 +71,7 @@ void keyPressed() {
       game1.bogo();
     } else if ((keyCode == 51) && (game1.getInsertion()) && (game1.getCooldown() ==0) ) {
       game1.insertion();
-      game1.insertion();
-      game1.insertion();
-      game1.insertion();
     } else if ((keyCode == 52) && (game1.getBubble()) && (game1.getCooldown() ==0) ) {
-      game1.bubble();
       game1.bubble();
     }
   }
@@ -82,13 +90,7 @@ void keyReleased() {
   }
 }
 
-void draw() {
-  if (!myMenu.getStartButton().getPressed()) {
-    myMenu.display();
-  } else if (myMenu.getStartButton().getPressed() && !game1.getOver()) {
-    game1.display();
-  }
-}
+
 
 /*
   PImage[] prototype = new PImage[5];

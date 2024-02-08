@@ -68,9 +68,6 @@ public class Game extends Screen {
         player1.collision(tower);
       }
     }
-    
-    player1.move();
-    player1.display();
     fill(col2);
     rect(0, 0, 400, 100);
     textSize(50);
@@ -80,9 +77,8 @@ public class Game extends Screen {
     strokeWeight(1);
     text("Score: " + ceil(((float)score)/60), 10, 25);
     text("CoolDown: " + ceil(((float)cooldown)/60), 10, 75);
-    if (bossTime == true) {
-      THEGOV.display();
-    }
+    player1.move();
+    player1.display();
   }
   public void toggleGame() {
     isOver = !isOver;
@@ -145,7 +141,7 @@ public class Game extends Screen {
     towers = new ArrayList<Slot>(tempList0);
   }
   public void insertion() { //FINISHED NEEL! I DID IT!
-    cooldown += 30;
+    cooldown += 120;
     int correct = 0;
     Slot tower0 = towers.get(0);
     Slot tower1;
@@ -187,7 +183,7 @@ public class Game extends Screen {
   }
 
   public void bubble() {
-    cooldown +=60;
+    cooldown += 120;
     Slot tower0 = towers.get(0);
     Slot tower1 = towers.get(1);
     for (int i = 0; i < towers.size()-1; i ++) {
