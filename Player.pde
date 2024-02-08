@@ -1,9 +1,9 @@
 public class player {
-  private float x = 0, y= 0, w = 25, h = 25; 
+  private float x = 0, y= 0, w = 25, h = 25;
   //jFrames = 0;
   private float grav = 2;
   private float fall = 0;
-  private boolean canRight = true, canLeft = true, jump = false,  inair = true;
+  private boolean canRight = true, canLeft = true, jump = false, inair = true;
   //stop = false,
   private int VX = 3;
   private int disp = 0;
@@ -16,7 +16,9 @@ public class player {
     this.x = x;
     this.y = y;
   }
-
+  public void setJump(boolean j) {
+    this.jump = j;
+  }
   void jump() {//this is jump, works .5 seconds or 500 millis. Change the 500 to raise the time
     if (jump == false) {
       fall = millis();
@@ -65,30 +67,30 @@ public class player {
       x -= VX;
     }//
     //the tower fed into this. for now it checks against everything in existence.
-    if (x+25 >= tower.x && y+25 > tower.y && x < tower.x) { // tower side
+    if (x+25 >= tower.getX() && y+25 > tower.getY() && x < tower.getX()) { // tower side
       x -= VX;
       canRight = false;
     }
-    if (x <= tower.x+tower.w && y+w > tower.y && x+w > tower.x+tower.w) { // tower side
+    if (x <= tower.getX()+tower.getW() && y+w > tower.getY() && x+w > tower.getX()+tower.getW()) { // tower side
       x += VX;
       canLeft = false;
     }//                                                                                                          ____[]___
-    if (y+h > tower.y && x+w < tower.x+tower.w &&  x > tower.x && inair == true) { //tower floor TILE IN CENTER [_________]   WORKS
+    if (y+h > tower.getY() && x+w < tower.getX()+tower.getW() &&  x > tower.getX() && inair == true) { //tower floor TILE IN CENTER [_________]   WORKS
       y -= grav;
       inair = false;
       jump = true;
     }                                                                                                     //  []_____
-    if (y+h > tower.y && x < tower.x &&  x+w > tower.x && inair == true) { //tower floor TILE ON LEFT          |_____]
+    if (y+h > tower.getY() && x < tower.getX() &&  x+w > tower.getX() && inair == true) { //tower floor TILE ON LEFT          |_____]
       inair = false;
       y -= grav ;
       jump = true;
     }
-    if (y+25 > tower.y && x <= tower.x+tower.w && x+25 >=tower.x) { //tower floor RIGT
+    if (y+25 > tower.getY() && x <= tower.getX()+tower.getW() && x+25 >=tower.getX()) { //tower floor RIGT
       inair = false;
       jump = true;
       y -= grav;
     }
-    if (x >= tower.x && y-25 <=tower.y && x <= tower.x) {
+    if (x >= tower.getX() && y-25 <=tower.getY() && x <= tower.getX()) {
       //grav = 0;
     }
     if (x <= 0) {
@@ -97,7 +99,7 @@ public class player {
     }
     if (x+25 >= 1200) {
       x -= 3;
-      print("rightWall");
+      bossTime = true;
     }
   }
   //this is player input, should run BEFORE collsion
@@ -108,8 +110,8 @@ public class player {
     if (rightArrow == true && canRight == true) {
       x += VX;
       disp = 1;
-//    if (inair = true) {
-  //  }
+      //     if (inair = true) {
+      //   }
     }
     if (leftArrow == true && canLeft == true) {
       x-= VX;
