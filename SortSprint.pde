@@ -17,9 +17,11 @@ boolean leftArrow = false;
 boolean upArrow = false;
 boolean bossTime = false;
 player player1 = new player(10, 600);
+ArrayList<boss> justOne = new ArrayList<boss>();
 PImage[] prototype = new PImage[5];
 PImage[] bigBoiPics = new PImage[5];
 void setup() {
+  justOne.add(new boss(400, 25));
   prototype[0] = loadImage("spiderSimR.png");
   prototype[1] = loadImage("spiderSimR.png");
   prototype[2] = loadImage("spiderSimR1.png");

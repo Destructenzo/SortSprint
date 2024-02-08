@@ -79,6 +79,11 @@ public class Game extends Screen {
     text("CoolDown: " + ceil(((float)cooldown)/60), 10, 75);
     player1.move();
     player1.display();
+    if (bossTime == true) {
+      justOne.get(0).motion();
+      justOne.get(0).shoot(player1);
+      justOne.get(0).display();
+    }
   }
   public void toggleGame() {
     isOver = !isOver;
