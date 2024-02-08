@@ -1,40 +1,51 @@
-public class boss {
-  private class bullet {
-    int x, y, w, h;
-    bullet (int x, int y, int w, int h) { // BIRB NEST
-      this.x = x;
-      this.y = y;
-      this.w = w;
-      this.h = h;
+public class Boss {//final boss of the game
+
+  private float x = 300;//instances variables
+  private float y = 50;
+  private float tempX, tempY;
+  private int cooldown = 600;
+  private  int shotTimer = 120;
+  private  boolean follow = true;
+  private boolean hasShot = false;
+  Boss() {//basic constructor
+  }
+
+  public void setFollow(boolean f) {
+    this.follow = f;
+  }
+  public void display() {//he follows you and will shoot lasers at you. if one hits, it is game over.
+    if (cooldown >0) {
+      cooldown--;
     }
-  }
-  int x = 300, y = 50, cooldown = 500, img = 0, oldTime = 0, sinceLock = 0, dir = 0;
-  boolean hit = false;
-  ArrayList<bullet> hitList = new ArrayList<bullet>(); //gonna need one every scan, no point in a big list, we run it internal to this bastard
-  void boss(int x, int y) {
-    this.x = x;
-    this.y = y;
-  }
-  void motion() {
-    if (x >= 100) {
-      
-      img = 1;
+    if (follow) {
+      x = player1.getX();
+      y = 50;
+      image(bigBoiPics[0], x, y);
     }
-  }
-  void shoot(player target) {
-    if (millis()-cooldown >= oldTime) {
-      detectScan();
-      oldTime = millis();
-    }
-    
-  }
-  void display() {
-    img = dir;
-    image(bigBoiPics[img], x, y);
-  }
-  void detectScan() {
-    while(hit = false) {
-      
+    if (cooldown == 0) {
+      image(bigBoiPics[3], x, y);
+      follow = false;
+      if (shotTimer > 0) {
+        shotTimer --;
+      }
+      if (!hasShot) {
+        tempX = player1.getX()+12;
+        tempY = player1.getY()+12;
+        hasShot =!hasShot;
+      }
+      strokeWeight(10);
+      stroke(255, 0, 0);
+      fill(255, 0, 0);
+      line(x, y, tempX, tempY);
+      if (shotTimer == 0) {
+        follow = true;
+        cooldown = 600;
+        hasShot = true;
+        shotTimer = 120;
+        if (player1.getX() <= tempX && tempX <= (player1.getX()+player1.getW()) && player1.getY() <= tempY && tempY <= (player1.getY()+player1.getH())) {
+          game2.setScore(0);
+        }
+      }
     }
   }
 }
