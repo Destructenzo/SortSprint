@@ -10,11 +10,14 @@ public class Screen {
   public void display() {
     background(c);
   }
-  public int getX(){
+  public int getX() {
     return this.x;
   }
-  public int getY(){
+  public int getY() {
     return this.y;
   }
-    
+  public void pallete(color c1) {
+    fill(c1);
+    stroke(c1);
+  }
 }

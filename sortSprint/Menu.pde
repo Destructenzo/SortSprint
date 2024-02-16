@@ -1,14 +1,19 @@
 public class Menu extends Screen {
-  Button b;
-  Menu(int x, int y, color c, Button b) {
+  Button start, quit;
+  Menu(int x, int y, color c, Button b1, Button b2) {
     super(x, y, c);
-    this.b = b;
+    this.start = b1;
+    this.quit = b2;
   }
-  public Button getButton() {
-    return b;
+  public Button getStartButton() {
+    return start;
+  }
+  public Button getQuitButton() {
+    return quit;
   }
   public void display() {
     super.display();
-    b.display();
+    start.display();
+    quit.display();
   }
 }
