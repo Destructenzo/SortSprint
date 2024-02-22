@@ -17,7 +17,7 @@ public class Button {
 
     if (this.isHovered()) {
       strokeWeight(10);
-      stroke(255, 255, 0);
+      stroke(3, 236, 255);
     } else {
       strokeWeight(1);
       stroke(0);
