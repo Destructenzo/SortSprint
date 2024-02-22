@@ -1,9 +1,9 @@
-public class Boss {//final boss of the game
+  public class Boss {//final boss of the game
 
   private float x = 300;//instances variables
   private float y = 50;
   private float tempX, tempY;
-  private int cooldown = 600;
+  private int cooldown = 180;
   private  int shotTimer = 120;
   private  boolean follow = true;
   private boolean hasShot = false;
@@ -36,10 +36,14 @@ public class Boss {//final boss of the game
       strokeWeight(10);
       stroke(255, 0, 0);
       fill(255, 0, 0);
+      col1 = color (255, 0, 0);
+      tempX = player1.getX();
+      tempY = player1.getY();
       line(x, y, tempX, tempY);
       if (shotTimer == 0) {
         follow = true;
-        cooldown = 600;
+        hasShot = !hasShot;
+        cooldown = 180;
         hasShot = true;
         shotTimer = 120;
         if (player1.getX() <= tempX && tempX <= (player1.getX()+player1.getW()) && player1.getY() <= tempY && tempY <= (player1.getY()+player1.getH())) {

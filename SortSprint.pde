@@ -1,4 +1,7 @@
-color col1 = color(234, 12, 94); //Global Variables and objects
+import processing.sound.*;
+SoundFile mainTrack;
+
+color col1 = color(0, 0, 25); //Global Variables and objects
 color col2 = color(18, 108, 175);
 color col3 = color(170, 149, 24);
 color col4 = color(49, 18, 29);
@@ -29,6 +32,8 @@ Boss boss1 = new Boss();
 PImage[] prototype = new PImage[5];
 PImage[] bigBoiPics = new PImage[4];
 void setup() {//loads sprites for player and boss objects, initializes al button objects, one menu object and one End object
+  mainTrack = new SoundFile(this, "assets/Every_End_Dimrain47.mp3");
+  
   prototype[0] = loadImage("spiderSimR.png");//also sets canvas size to be 1200 by 900 pixels with a frame rate of 60
   prototype[1] = loadImage("spiderSimR.png");
   prototype[2] = loadImage("spiderSimR1.png");
@@ -38,7 +43,6 @@ void setup() {//loads sprites for player and boss objects, initializes al button
   bigBoiPics[1] = loadImage("IRSL.png");
   bigBoiPics[2] = loadImage("IRSR.png");
   bigBoiPics[3] = loadImage("IRSA.png");
-  textFont(loadFont("AniMeMatrix-MB_EN-24.vlw"));
   size(1200, 900);
   frameRate(60);
   startButton = new Button(300, 350, 600, 200, col2, "Start", 100, col3);
@@ -66,6 +70,7 @@ void setup() {//loads sprites for player and boss objects, initializes al button
   loser = new End(1200, 900, col6, restart, "You Lose!");
 }
 void draw() {//depending on the buttons that are active, it runs the different display methods of different classes
+  mainTrack.play();
   if (Lose) {//draw loops 60 times per second and uses double buffer animation
     restart.setSize(300, 350, 600, 200);
     loser.display();
@@ -102,7 +107,7 @@ void mousePressed() {//whenever you click, looks what what Button instance was c
     myMenu.getStartButton().togglePressed();
     myMenu.getQuitButton().togglePressed();
     myInstruct = new InstructionScreen(1200, 900, col1, goButton1);
-    game1 = new Game(1200, 900, col4, 36000, quitButton, player1, goButton2);
+    game1 = new Game(1200, 900, col1, 36000, quitButton, player1, goButton2);
     gameNumber = 1;
     if (quitButton.getPressed()) {
       quitButton.togglePressed();
@@ -238,7 +243,7 @@ void mousePressed() {//whenever you click, looks what what Button instance was c
     }
   } else if (goButton3.isHovered()) {
     goButton3.togglePressed();
-    game2 = new Game(1200, 900, col4, 12000, quitButton, player1, goButton4);
+    game2 = new Game(1200, 900, col1, 12000, quitButton, player1, goButton4);
     gameNumber = 2;
     game2.setShuffle(tempS);
     game2.setInsertion(tempI);

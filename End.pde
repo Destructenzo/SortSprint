@@ -15,7 +15,7 @@ public class End extends Screen {//last two screens of the game.
     rectMode(CORNER);
     rect(250, 50, 700, 200);
     textAlign(CENTER, CENTER);
-    textSize(125);
+    textSize(70);
     fill(col3);
     text(s + "\n" + "Final Money: " + money, 600, 150);
   }
