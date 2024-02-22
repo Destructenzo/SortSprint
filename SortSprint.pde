@@ -1,3 +1,6 @@
+import processing.sound.*;
+SoundFile mainTrack;
+
 color col1 = color(0, 0, 25); //Global Variables and objects
 color col2 = color(18, 108, 175);
 color col3 = color(170, 149, 24);
@@ -25,10 +28,18 @@ boolean tempS = false;
 boolean tempI = false;
 boolean tempB = false;
 player player1 = new player(10, 600);
+ArrayList<boss> justOne = new ArrayList<boss>();
+PImage[] prototype = new PImage[5];
+PImage[] bigBoiPics = new PImage[5];
+void setup() {
+  justOne.add(new boss(400, 25));
+  prototype[0] = loadImage("spiderSimR.png");
 Boss boss1 = new Boss();
 PImage[] prototype = new PImage[5];
 PImage[] bigBoiPics = new PImage[4];
 void setup() {//loads sprites for player and boss objects, initializes al button objects, one menu object and one End object
+  mainTrack = new SoundFile(this, "assets/Every_End_Dimrain47.mp3");
+  
   prototype[0] = loadImage("spiderSimR.png");//also sets canvas size to be 1200 by 900 pixels with a frame rate of 60
   prototype[1] = loadImage("spiderSimR.png");
   prototype[2] = loadImage("spiderSimR1.png");
@@ -65,6 +76,7 @@ void setup() {//loads sprites for player and boss objects, initializes al button
   loser = new End(1200, 900, col6, restart, "You Lose!");
 }
 void draw() {//depending on the buttons that are active, it runs the different display methods of different classes
+  mainTrack.play();
   if (Lose) {//draw loops 60 times per second and uses double buffer animation
     restart.setSize(300, 350, 600, 200);
     loser.display();

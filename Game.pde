@@ -84,6 +84,10 @@ public class Game extends Screen {//this is the class that runs the main game. i
     text("CoolDown: " + ceil(((float)cooldown)/60), 10, 75);
     player1.move();
     player1.display();
+    if (bossTime == true) {
+      justOne.get(0).motion();
+      justOne.get(0).shoot(player1);
+      justOne.get(0).display();
     if (player1.getX() >= 1100 && player1.getY() >= 300) {
       goOn.setSize(100, 600, 400, 120);
       goOn.display();

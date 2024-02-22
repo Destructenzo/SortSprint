@@ -118,6 +118,17 @@ public class player {
     }
     if (x+25 >= 1200) {
       x -= 3;
+      x = 10;
+      y = 400;
+      print("rightWall");
+      if (bossTime == true) {
+        bossTime = false;
+        justOne.remove(0);
+      }
+      if (bossTime == false) {
+        justOne.add(new boss(400, 25));
+        bossTime = true;
+      } 
       //bossTime = true;
     }
   }
