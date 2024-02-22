@@ -28,6 +28,12 @@ boolean tempS = false;
 boolean tempI = false;
 boolean tempB = false;
 player player1 = new player(10, 600);
+ArrayList<boss> justOne = new ArrayList<boss>();
+PImage[] prototype = new PImage[5];
+PImage[] bigBoiPics = new PImage[5];
+void setup() {
+  justOne.add(new boss(400, 25));
+  prototype[0] = loadImage("spiderSimR.png");
 Boss boss1 = new Boss();
 PImage[] prototype = new PImage[5];
 PImage[] bigBoiPics = new PImage[4];
