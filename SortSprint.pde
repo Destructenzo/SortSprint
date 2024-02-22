@@ -1,4 +1,4 @@
-color col1 = color(234, 12, 94); //Global Variables and objects
+color col1 = color(0, 0, 25); //Global Variables and objects
 color col2 = color(18, 108, 175);
 color col3 = color(170, 149, 24);
 color col4 = color(49, 18, 29);
@@ -38,7 +38,6 @@ void setup() {//loads sprites for player and boss objects, initializes al button
   bigBoiPics[1] = loadImage("IRSL.png");
   bigBoiPics[2] = loadImage("IRSR.png");
   bigBoiPics[3] = loadImage("IRSA.png");
-  textFont(loadFont("AniMeMatrix-MB_EN-24.vlw"));
   size(1200, 900);
   frameRate(60);
   startButton = new Button(300, 350, 600, 200, col2, "Start", 100, col3);
@@ -102,7 +101,7 @@ void mousePressed() {//whenever you click, looks what what Button instance was c
     myMenu.getStartButton().togglePressed();
     myMenu.getQuitButton().togglePressed();
     myInstruct = new InstructionScreen(1200, 900, col1, goButton1);
-    game1 = new Game(1200, 900, col4, 36000, quitButton, player1, goButton2);
+    game1 = new Game(1200, 900, col1, 36000, quitButton, player1, goButton2);
     gameNumber = 1;
     if (quitButton.getPressed()) {
       quitButton.togglePressed();
@@ -238,7 +237,7 @@ void mousePressed() {//whenever you click, looks what what Button instance was c
     }
   } else if (goButton3.isHovered()) {
     goButton3.togglePressed();
-    game2 = new Game(1200, 900, col4, 12000, quitButton, player1, goButton4);
+    game2 = new Game(1200, 900, col1, 12000, quitButton, player1, goButton4);
     gameNumber = 2;
     game2.setShuffle(tempS);
     game2.setInsertion(tempI);

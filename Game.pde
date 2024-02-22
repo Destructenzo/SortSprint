@@ -54,16 +54,17 @@ public class Game extends Screen {//this is the class that runs the main game. i
       cooldown --;
     }
     score--;
-    stroke(0);
+    stroke(75, 75, 200);
     strokeWeight(1);
+    fill(25, 25, 55);
     rect(0, 750, 100, 150);
     rect(1100, 400, 100, 500);
     input(); //sorry it is at the bottom of the SortSprint tab.
     for (int j = 0; j < 4; j +=1) {
       for (int i = 0; i < towers.size(); i += 1) {
         Slot tower = towers.get(i);
-        pallete(#9a0a9a);
-        stroke(#0F090F);
+        fill(25, 25, 50);
+        stroke(50, 255, 110, 200);
         strokeWeight(1);
         tower.update(ceil((100+(i*(ceil(1000/towers.size()))))), (ceil((1000)/towers.size())));
         tower.display();

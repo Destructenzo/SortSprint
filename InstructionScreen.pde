@@ -12,8 +12,8 @@ public class InstructionScreen extends Screen {//gives instructions
     stroke(0);
     strokeWeight(1);
     rectMode(CORNER);
-    rect(650, 50, 500, 120);
-    rect(90, 190, 100, 100);
+    rect(650, 50, 500, 120); 
+    rect(90, 190, 100, 100); 
     rect(225, 190, 100, 100);
     rect(360, 190, 100, 100);
     rect(490, 190, 100, 100);
@@ -32,6 +32,11 @@ public class InstructionScreen extends Screen {//gives instructions
     text("Press ↑:" + "\n" + "Jump" + "\n" + "Up", 925, 490);
     text("Press ←:" + "\n" + "Go" + "\n" + "Left", 800, 610);
     text("Press →:" + "\n" + "Go" + "\n" + "Right", 1050, 610);
+    textSize(15);
+    fill(100);
+    text("Use these to Manipulate the Towers", 500, 50);
+    textAlign(LEFT);
+    text("Welcome" + "\n" + "S tudent" + "\n" + "P roductivity" + "\n" + "I ntelligence" + "\n" + "D evelopment" + "\n" + "E xcercise"  + "\n" + "R obot", 100, 400);
     b.display();
   }
 }

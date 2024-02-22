@@ -23,6 +23,6 @@ public class Setting extends Screen {//this is the screen before the boss fight
     textAlign(CENTER, CENTER);
     textSize(50);
     fill(col3);
-    text(round(money), 100, 50);
+    text("$" + round(money), 100, 50);
   }
 }
